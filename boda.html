@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestra boda de oro 50 aniversario</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300&family=Gabriola&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300&display=swap');
 
         body {
             margin: 0;
@@ -180,19 +180,27 @@
             <button class="arrow-button" onclick="showNextInvitation(2)">&#8592; Anterior</button>
         </div>
     </div>
-    <script>
-        let currentInvitation = 1;
 
-        function showNextInvitation(next) {
-            document.getElementById(`invitation${currentInvitation}`).style.display = 'none';
-            document.getElementById(`invitation${next}`).style.display = 'block';
-            currentInvitation = next;
+    <script>
+        function showNextInvitation(nextId) {
+            // Oculta todas las tarjetas
+            var invitations = document.querySelectorAll('.invitation-content');
+            invitations.forEach(function(invitation) {
+                invitation.style.display = 'none';
+            });
+
+            // Muestra la tarjeta siguiente
+            var nextInvitation = document.getElementById('invitation' + nextId);
+            if (nextInvitation) {
+                nextInvitation.style.display = 'block';
+                nextInvitation.scrollIntoView({ behavior: 'smooth' }); // Desplazamiento suave a la tarjeta
+            }
         }
 
-        // Mostrar la primera tarjeta al cargar la página
-        window.onload = function() {
-            showNextInvitation(1);
-        };
+        document.addEventListener('DOMContentLoaded', function() {
+            // Muestra la primera tarjeta al cargar
+            document.getElementById('invitation1').style.display = 'block';
+        });
     </script>
 </body>
 </html>
