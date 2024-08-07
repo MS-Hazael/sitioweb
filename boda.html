@@ -73,7 +73,7 @@
         .invitation-text, .date, .time, .location, .rsvp {
             margin: 10px 0;
             font-size: 1.6em;
-            font-family: 'Gabriola', sans-serif;
+            font-family: 'Great Vibes', cursive;
             color: #333; /* Color del texto para mejor legibilidad */
         }
 
@@ -132,6 +132,27 @@
             height: auto; /* Mantener proporciones */  
         }
 
+        .start-button {
+            padding: 15px 30px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2em;
+            background: #d4af37;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        .start-button:hover {
+            background: #b8860b;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -139,11 +160,13 @@
     </style>
 </head>
 <body>
-    <div class="invitation-container">
+    <button class="start-button" onclick="startExperience()">Iniciar</button>
+    <div class="invitation-container" style="display:none;">
         <!-- Primer tarjeta -->
         <div class="invitation-content" id="invitation1">
-            <h1 class="title">Nuestra boda de oro 50 aniversario</h1>
+            <h1 class="title">Nuestras bodas de oro</h1>
             <h2 class="bride-groom">Tere & Roberto</h2>
+            <h1 class="title">50 aniversario</h1>
             <p class="invitation-text">Hace 50 años llegamos ante Ti, llenos de ilusiones y alegrías a pedirte que con tu gran amor de Padre bendijeras nuestra unión. Hoy te decimos gracias Señor por todo lo que nos has dado. Te pedimos que pertenezcas siempre con nosotros, para que unidos a ti, lleguemos al final de nuestro camino y podamos decirte.</p>
             <p class="invitation-text"> ¡¡¡ Padre, hemos cumplido !!!</p>
             <button class="rsvp-button" onclick="showNextInvitation(2)">SIGUIENTE</button>
@@ -171,7 +194,7 @@
         <!-- Tercera tarjeta -->
         <div class="invitation-content" id="invitation3">
             <h1 class="title">Detalles importantes</h1>
-            <h2 class="bride-groom">Tere & Roberto</h2>
+            <!-- <h2 class="bride-groom">Tere & Roberto</h2> -->
             <p class="invitation-text">En este día tan especial el mayor regalo es tu compañia, si deseas obsequiarnos algo nos encantaria que Fuera en efectivo colocandolo dentro de un sobre que se te entregara al llegar al evento, el sobre lo podras depositar en un cofre que encontraras en la Fiesta.</p>
             <p class="invitation-text">¡Estamos ansiosos de celebrar contigo este día tan especial!</p>
             <p></p>
@@ -180,6 +203,9 @@
             <button class="arrow-button" onclick="showNextInvitation(2)">&#8592; Anterior</button>
         </div>
     </div>
+
+    <!-- Agrega el elemento de audio aquí -->
+    <audio id="background-music" src="Sheeran.mp3" loop></audio>
 
     <script>
         function showNextInvitation(nextId) {
@@ -195,6 +221,15 @@
                 nextInvitation.style.display = 'block';
                 nextInvitation.scrollIntoView({ behavior: 'smooth' }); // Desplazamiento suave a la tarjeta
             }
+        }
+
+        function startExperience() {
+            // Muestra la primera tarjeta y oculta el botón de inicio
+            document.querySelector('.invitation-container').style.display = 'block';
+            document.querySelector('.start-button').style.display = 'none';
+            document.getElementById('invitation1').style.display = 'block';
+            // Reproduce el audio de fondo
+            document.getElementById('background-music').play();
         }
 
         document.addEventListener('DOMContentLoaded', function() {
