@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestra boda de oro 50 aniversario</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300&family=Gabriola&display=swap');
 
         body {
@@ -74,20 +73,19 @@
         .invitation-text, .date, .time, .location, .rsvp {
             margin: 10px 0;
             font-size: 1.6em;
-            font-family: 'Gabriola';
+            font-family: 'Gabriola', sans-serif;
             color: #333; /* Color del texto para mejor legibilidad */
         }
 
         .rsvp-button {
             margin-top: 20px;
             padding: 10px 20px;
-            font-family: 'Gabriola';
+            font-family: 'Gabriola', sans-serif;
             font-size: 1.6em;
             background: #d4af37; /* Color dorado */
             color: white;
             border: none;
             border-radius: 5px;
-            font-size: 1em;
             cursor: pointer;
             transition: background 0.3s ease;
         }
@@ -115,7 +113,7 @@
             margin: 20px;
             background: transparent;
             border: none;
-            font-family: 'Gabriola';
+            font-family: 'Gabriola', sans-serif;
             font-size: 1.5em; /* Tamaño de fuente reducido */
             cursor: pointer;
             color: #555;
@@ -147,8 +145,6 @@
             <h1 class="title">Nuestra boda de oro 50 aniversario</h1>
             <h2 class="bride-groom">Tere & Roberto</h2>
             <p class="invitation-text">Hace 50 años llegamos ante Ti, llenos de ilusiones y alegrías a pedirte que con tu gran amor de Padre bendijeras nuestra unión. Hoy te decimos gracias Señor por todo lo que nos has dado. Te pedimos que pertenezcas siempre con nosotros, para que unidos a ti, lleguemos al final de nuestro camino y podamos decirte.</p>
-            <!-- <p class="invitation-text">Hoy te decimos gracias Señor por todo lo que nos has dado.</p> -->
-            <!-- <p class="invitation-text">Te pedimos que pertenezcas siempre con nosotros, para que unidos a ti, lleguemos al final de nuestro camino y podamos decirte.</p> -->
             <p class="invitation-text"> ¡¡¡ Padre, hemos cumplido !!!</p>
             <button class="rsvp-button" onclick="showNextInvitation(2)">SIGUIENTE</button>
             <p></p>
@@ -182,30 +178,21 @@
             <img src="tere.jpeg" alt="Tere" class="tere">
             <p></p>
             <button class="arrow-button" onclick="showNextInvitation(2)">&#8592; Anterior</button>
-           <!-- <button class="rsvp-button">Confirmar Asistencia</button> -->
         </div>
     </div>
-
     <script>
-        function showNextInvitation(nextId) {
-            // Oculta todas las tarjetas
-            var invitations = document.querySelectorAll('.invitation-content');
-            invitations.forEach(function(invitation) {
-                invitation.style.display = 'none';
-            });
+        let currentInvitation = 1;
 
-            // Muestra la tarjeta siguiente
-            var nextInvitation = document.getElementById('invitation' + nextId);
-            if (nextInvitation) {
-                nextInvitation.style.display = 'block';
-                nextInvitation.scrollIntoView({ behavior: 'smooth' }); // Desplazamiento suave a la tarjeta
-            }
+        function showNextInvitation(next) {
+            document.getElementById(`invitation${currentInvitation}`).style.display = 'none';
+            document.getElementById(`invitation${next}`).style.display = 'block';
+            currentInvitation = next;
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // Muestra la primera tarjeta al cargar
-            document.getElementById('invitation1').style.display = 'block';
-        });
+        // Mostrar la primera tarjeta al cargar la página
+        window.onload = function() {
+            showNextInvitation(1);
+        };
     </script>
 </body>
 </html>
